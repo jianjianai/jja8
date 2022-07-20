@@ -1,0 +1,29 @@
+{{ define "main" -}}
+
+<div class="布局框">
+  <div class="文章列表信息框">
+    <div class="文章列表信息标题">
+        推荐的文章
+    </div>
+  </div>
+  <div id="文章列表">
+    {{ range .Site.RegularPages -}}
+    <a class="文章列表元素" href="{{ .Permalink }}"  {{ if .Params.img }}  style="background-image: url({{ .Site.BaseURL }}/{{ .Params.img }});" {{else}} style="background-image: url({{ .Site.BaseURL }}/img/默认背景图.webp)" {{ end }}>
+      <div class="文章列表元素背景">
+        <div class="文章列表元素框">
+          <h2 class="文章列表标题">{{ .Title }}</h2>
+          {{ if .Params.synopsis }}<p class="文章列表简介">{{.Params.synopsis}} </p>{{end}}
+          <p class="文章列表时间日期">{{ .Date.Format "2006-01-02 15:04" }}</p>
+          {{ if .Params.Summary }}<p class="文章列表提要"> {{ .Summary }}</p>{{end}}
+        </div>
+      </div>
+    </a>
+    {{- end }}
+  </div>
+</div>
+
+
+
+
+
+{{- end }}

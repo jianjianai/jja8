@@ -1,0 +1,13 @@
+{{ partial "head.html" . }}
+  <body class="{{ .Site.Params.themeColor }} {{if .Site.Params.layoutReverse}}layout-reverse{{end}}">
+
+    {{ partial "导航栏.html" . }}
+
+    <div id="主页面">
+    {{ block "main" . -}}{{- end }}
+    </div>
+
+
+    {{ partial "页脚.html" . }}
+  </body>
+</html>

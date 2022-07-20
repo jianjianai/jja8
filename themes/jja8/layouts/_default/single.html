@@ -1,0 +1,23 @@
+{{ define "main" -}}
+
+  {{ if .Params.img }}  
+<div id="标题卡片"   style="background-image: url({{ .Site.BaseURL }}/{{ .Params.img }});" >
+  {{else}}
+<div id="标题卡片无图" >
+  {{ end }}
+  <div id="文章元素背景">
+    <div id="文章元素框">
+      <h2 id="文章标题">{{ .Title }}</h2>
+      {{ if .Params.synopsis }}<p id="文章简介">{{.Params.synopsis}} </p>{{end}}
+      <p id="文章时间日期">{{ .Date.Format "2006-01-02 15:04" }}</p>
+      {{ if .Params.Summary }}<p id="文章提要"> {{ .Summary }}</p>{{end}}
+    </div>
+  </div>
+</div>
+<div id="文章内容框">
+  <div id="文章内容正文">
+    {{ .Content }}
+  </div>
+</div>
+
+{{- end }}
