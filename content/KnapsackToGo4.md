@@ -4,7 +4,7 @@ date: 2022-07-19T17:48:15+08:00
 tags: ["hugo", "menu"]
 img: "img/KnapsackToGo4/KnapsackToGo2功能介绍.gif"
 synopsis: 强大的跨服数据同步插件第4代
-summary: 强大的跨服数据同步插件第4代
+summary: 可在多个服务器之间同步玩家数据，支持多种同步方式。
 ---
 
 # KnapsackToGo4
