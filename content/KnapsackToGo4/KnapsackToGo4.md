@@ -2,7 +2,7 @@
 title: "KnapsackToGo4"
 date: 2022-07-19T17:48:15+08:00
 tags: ["简简爱", "bukkit插件"]
-img: "img/KnapsackToGo4/KnapsackToGo2功能介绍.gif"
+img: "KnapsackToGo4/KnapsackToGo2功能介绍.gif"
 synopsis: 强大的跨服数据同步插件第4代
 summary: 可在多个服务器之间同步玩家数据，支持多种同步方式
 ---
@@ -35,7 +35,7 @@ KnapsackToGo4使用的独占锁的方式，当玩家在一个服务器中的时�
 
 下面是两个mc客户端登录同一个游戏账号进入安装了KnapsackToGo4并且互相同步的服务器的演示。
 
-![asd](img/KnapsackToGo4//如何保证数据安全.gif)
+![asd](如何保证数据安全.gif)
 
 # 为什么写这款插件
 KnapsackToGo2插件已经有很多服务器在使用了，并且功能也挺完善。
