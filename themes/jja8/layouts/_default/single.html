@@ -1,5 +1,5 @@
 {{ define "main" -}}
-
+<div id="文章布局框">
   {{ if .Params.img }}  
 <div id="标题卡片"   style="background-image: url({{ .Site.BaseURL }}{{ .Params.img }});" >
   {{else}}
@@ -19,5 +19,7 @@
     {{ .Content }}
   </div>
 </div>
+</div>
+
 
 {{- end }}

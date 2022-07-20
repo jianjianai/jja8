@@ -55,9 +55,6 @@
   }
 
   @media screen and (max-width: 720px){
-    #文章内容框{
-      font-size: 10px;
-    }
     #文章元素背景{
         font-size: 10px;
     }
@@ -65,18 +62,12 @@
 
   
   @media screen and (max-width: 530px){
-    #文章内容框{
-      font-size: 8px;
-    }
     #文章元素背景{
         font-size: 8px;
     }
   }
 
   @media screen and (max-width: 420px){
-    #文章内容框{
-      font-size: 5px;
-    }
     #文章元素背景{
         font-size: 5px;
     }
