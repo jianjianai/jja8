@@ -2,7 +2,7 @@
 title: "OnlineRewards / 在线奖励"
 date: 2022-07-20T20:17:39+08:00
 tags: ["简简爱", "bukkit插件"]
-img: "OnlineRewards/img_1.png"
+img: "img/OnlineRewards/img_1.png"
 synopsis: 简单易用且强大的在线奖励插件
 summary: 上手简单，规则高度自定义，支持多个服务器数据同步。
 ---
@@ -27,8 +27,8 @@ summary: 上手简单，规则高度自定义，支持多个服务器数据同�
 - 高度自定义规则
 
 ## 展示
-![img.png](img.png)
-![img_1.png](img_1.png)
+![img.png](/img/OnlineRewards/img.png)
+![img_1.png](/img/OnlineRewards/img_1.png)
 
 # 进度
 1. 完成数据库设计（完成）

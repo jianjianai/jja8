@@ -79,4 +79,4 @@ Spigot加载世界耗时是Paper的15倍左右。
 - 玩家在自己的世界重生 （慢慢来，咕咕咕）
 
 
-![介绍](MyWorld介绍.svg )
+![介绍](/img/MyWorld/MyWorld介绍.svg )
