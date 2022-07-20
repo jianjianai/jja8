@@ -7,3 +7,5 @@ cd "content/img"
 md "%flag%"
 cd "%flag%"
 explorer  .
+cd ../../article
+"%flag%.md"

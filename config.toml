@@ -2,3 +2,12 @@ baseURL = 'https://jja8.cn/'
 languageCode = 'zh-CN'
 title = '简的秘密基地'
 theme= 'jja8'
+
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+
