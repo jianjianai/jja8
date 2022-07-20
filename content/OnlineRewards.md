@@ -1,7 +1,7 @@
 ---
 title: "OnlineRewards / 在线奖励"
 date: 2022-07-20T20:17:39+08:00
-tags: ["简简爱", "插件"]
+tags: ["简简爱", "bukkit插件"]
 img: "img/OnlineRewards/img_1.png"
 synopsis: 简单易用且强大的在线奖励插件
 summary: 上手简单，规则高度自定义，支持多个服务器数据同步。
