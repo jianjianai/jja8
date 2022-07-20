@@ -8,7 +8,7 @@
   </div>
   <div id="文章列表">
     {{ range .Site.RegularPages -}}
-    <a class="文章列表元素" href="{{ .Permalink }}"  {{ if .Params.img }}  style="background-image: url({{ .Site.BaseURL }}/{{ .Params.img }});" {{else}} style="background-image: url({{ .Site.BaseURL }}/img/默认背景图.webp)" {{ end }}>
+    <a class="文章列表元素" href="{{ .Permalink }}"  {{ if .Params.img }}  style="background-image: url({{ .Site.BaseURL }}{{ .Params.img }});" {{else}} style="background-image: url({{ .Site.BaseURL }}img/默认背景图.webp)" {{ end }}>
       <div class="文章列表元素背景">
         <div class="文章列表元素框">
           <h2 class="文章列表标题">{{ .Title }}</h2>

@@ -1,7 +1,7 @@
 {{ define "main" -}}
 
   {{ if .Params.img }}  
-<div id="标题卡片"   style="background-image: url({{ .Site.BaseURL }}/{{ .Params.img }});" >
+<div id="标题卡片"   style="background-image: url({{ .Site.BaseURL }}{{ .Params.img }});" >
   {{else}}
 <div id="标题卡片无图" >
   {{ end }}
