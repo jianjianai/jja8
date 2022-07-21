@@ -9,6 +9,8 @@ summary: 找一台电脑挂网页就可以了,但是都有电脑挂网页了为�
 
 # 在gitpod上开mc服务器
 
+<iframe src="//player.bilibili.com/player.html?aid=941135262&bvid=BV1UW4y117P7&cid=780187355&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
 gitpod是一个网页在线IDE，是用来在线开发的。里面是有java环境的。有java的地方就能跑mc服务器，于是我决定尝试一下。
 首先在github上创建了一个test仓库。然后用gitpod打开这个仓库。
 
