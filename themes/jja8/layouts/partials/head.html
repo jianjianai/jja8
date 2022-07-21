@@ -15,6 +15,14 @@
   {{- end }}
   <meta name="description" content="{{if .IsHome}}{{ $.Site.Params.description }}{{else}}{{.Description}}{{end}}" />
 
+   <!-- 百度 -->
+   <meta name="baidu-site-verification" content="code-zuAAizjiM8">
+  <!-- 必应 -->
+  <meta name="msvalidate.01" content="07632F39AB3B1DE13D72819912B5F3C5">
+
+<!-- 简介 -->
+  <meta name="description" content="简的秘密基地，发布一些有意思的作品。">
+
   <!-- CSS -->
   <link type="text/css" rel="stylesheet" href="{{ .Site.BaseURL }}css/整体效果.css">
   <link type="text/css" rel="stylesheet" href="{{ .Site.BaseURL }}css/文章.css">
@@ -22,6 +30,7 @@
 
   <!-- Icons -->
   <link rel="shortcut icon" href="{{ .Site.BaseURL }}/插件实验室.png">
+
 
   <!-- RSS etc -->
   {{ range .AlternativeOutputFormats -}}
