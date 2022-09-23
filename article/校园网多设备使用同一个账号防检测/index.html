@@ -6,7 +6,7 @@
 我们的校园网貌似也没采用这种检测方式。</p><p><strong>基于 IPv4 数据包包头内的 TTL 字段的检测</strong></p><p>这种检测方式使用比较广泛，他的原理是检测数据包的TTL，数据包每经过一次转发TTL就会减1。
 windows默认的TTL是128，手机一般是64。当电脑访问一个网站时，如果数据包没经过转发，在经过
 校园网网关的时候TTL就是128，没有改变。如果连接了一个路由器，在经过校园网网关的时后TTL就会变成127
-手机也是同样的道理，对于这种检测方式我们可以用修改TTL的方法绕过检测。</p><p><strong>基于 IPv4 数据包包头内的 Identification 字段的检测</strong></p><p>这种检测方式使用比较少，但是我们学校貌似使用了这个方式。总之都防范一下，稳妥。</p><p>IPID的检测方式可以参考这篇文章：http://www.techwander.cn/Wordpress/ipid%e9%9a%90%e8%97%8f%e7%bd%91%e7%bb%9c%e6%89%ab%e6%8f%8f/</p><p>我简单描述一下原理，就是检测IPID序号的增加和减少。</p><p>这里有一个项目可以绕过IPID的检测：https://github.com/CHN-beta/rkp-ipid</p><p><strong>基于网络协议栈时钟偏移的检测</strong></p><p>这种检测方式使用比较广泛，他的原理是不同主机物理时钟偏移不同，通过分析分析不同主机发送报文的频率来检测是否存在多态设备。</p><h3 id=第一套应对方法>第一套应对方法</h3><p><strong>基于 IPv4 数据包包头内的 TTL 字段的检测</strong></p><p>修改所以经过路由器的数据包TTL值为固定值即可防止检测。</p><p>首先安装需要的软件包。</p><pre tabindex=0><code>opkg update
+手机也是同样的道理，对于这种检测方式我们可以用修改TTL的方法绕过检测。</p><p><strong>基于 IPv4 数据包包头内的 Identification 字段的检测</strong></p><p>这种检测方式使用比较少，但是我们学校貌似使用了这个方式。总之都防范一下，稳妥。</p><p>IPID的检测方式可以参考这篇文章：http://www.techwander.cn/Wordpress/ipid%e9%9a%90%e8%97%8f%e7%bd%91%e7%bb%9c%e6%89%ab%e6%8f%8f/</p><p>我简单描述一下原理，就是检测IPID序号的增加和减少。</p><p>这里有一个项目可以绕过IPID的检测：https://github.com/CHN-beta/rkp-ipid</p><p><strong>基于网络协议栈时钟偏移的检测</strong></p><p>这种检测方式使用比较广泛，他的原理是不同主机物理时钟偏移不同，通过分析分析不同主机发送报文的频率来检测是否存在多态设备。</p><p><strong>DPI (Deep Packet Inspection) 深度包检测技术</strong></p><p>这个检测方案比较先进，检测系统会抓包分析应用层的流量，根据不同应用程序的数据包的特征值来判断出是否存在多设备上网。</p><p>此种方式已确认在锐捷相关设备上应用，当由于此项功能极耗费性能，因此有些学校可能不会开启此项功能。</p><p>对于这个技术基本上无解，唯一的办法就是使用代理上网加密数据包。</p><h3 id=第一套应对方法>第一套应对方法</h3><p><strong>基于 IPv4 数据包包头内的 TTL 字段的检测</strong></p><p>修改所以经过路由器的数据包TTL值为固定值即可防止检测。</p><p>首先安装需要的软件包。</p><pre tabindex=0><code>opkg update
 opkg install iptables-mod-ipopt kmod-ipt-ipopt
 </code></pre><p>配置防火墙，添加规则。即可将所有经过路由器的TTL值修改为64
 进入 OpenWRT 防火墙设置，在 自定义设置 中填入以下内容：</p><pre tabindex=0><code>iptables -t mangle -A POSTROUTING -j TTL --ttl-set 64
@@ -125,7 +125,7 @@ iptables -t mangle -A POSTROUTING -j TTL --ttl-set 64
 # iptables 拒绝 AC 进行 Flash 检测
 
 iptables -I FORWARD -p tcp --sport 80 --tcp-flags ACK ACK -m string --algo bm --string &#34; src=\&#34;http://1.1.1.&#34; -j DROP
-</code></pre><p>点击重启防火墙就大功告成了。</p><h3 id=4使用体验>4.使用体验</h3><p>这套方案还是有几率被检测到，效果并不是特别好。</p><p>这个开发板自带的WIFI功能有点弱，建议配合一个路由器使用。</p><p>他刚好有两个空，WAN口连接光猫，LAN口连接路由器。注意顺序不要错哦。</p><h2 id=第二套方案实践>第二套方案实践</h2><p>软路由和固件与第一套方案实践相同</p><h3 id=3设置openwrt-1>3.设置openwrt</h3><p>刷完固件之后，插上电，等一会就会出现一个WIFI “FrendlyWrt-XXXXXX” 初始密码是passdo20。</p><p>连接WIFI之后进入管理页面。初始账号是root，密码是password</p><p>打开 系统->系统->时间同步</p><p>勾选启用NTP客户端和作为NTP服务器提供服务</p><p>候选NTP服务器 填入下方服务器</p><pre tabindex=0><code>ntp1.aliyun.com
+</code></pre><p>点击重启防火墙就大功告成了。</p><h3 id=4使用体验>4.使用体验</h3><p>这套方案还是有几率被检测到，效果并不是特别好。</p><h2 id=第二套方案实践>第二套方案实践</h2><p>软路由和固件与第一套方案实践相同</p><h3 id=3设置openwrt-1>3.设置openwrt</h3><p>刷完固件之后，插上电，等一会就会出现一个WIFI “FrendlyWrt-XXXXXX” 初始密码是passdo20。</p><p>连接WIFI之后进入管理页面。初始账号是root，密码是password</p><p>打开 系统->系统->时间同步</p><p>勾选启用NTP客户端和作为NTP服务器提供服务</p><p>候选NTP服务器 填入下方服务器</p><pre tabindex=0><code>ntp1.aliyun.com
 time1.cloud.tencent.com
 stdtime.gov.hk
 pool.ntp.org
@@ -179,4 +179,4 @@ iptables -t nat -A ntp_force_local -s 192.168.0.0/16 -j DNAT --to-destination 19
 </span></span><span style=display:flex><span><span style=color:#f92672>Rule</span>:
 </span></span><span style=display:flex><span>- <span style=color:#ae81ff>MATCH,DIRECT</span>
 </span></span></code></pre></div><p>打开 服务->openchash->全局配置->模式设置 和下方截图一样配置。
-<img src=/img/%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%A4%9A%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E8%B4%A6%E5%8F%B7%E9%98%B2%E6%A3%80%E6%B5%8B/openchash.png alt=光猫路由器></p><p>最后启动openclash，然后登录校园网账号，就可以愉快的上网了。</p><h3 id=4使用体验-1>4.使用体验</h3><p>这套方案比较稳定，但是比较吃性能，可能拖慢网速。</p><p>这个开发板自带的WIFI功能有点弱，建议配合一个路由器使用。</p><p>他刚好有两个空，WAN口连接光猫，LAN口连接路由器。注意顺序不要错哦。</p></div></div></div></div><div id=页脚><div class=页脚内容><p>本设计由简.精心制作</p><a href=/>Copyright © 2016-2020 简的秘密基地. All rights reserved.</a></div></div></body></html>
+<img src=/img/%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%A4%9A%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E8%B4%A6%E5%8F%B7%E9%98%B2%E6%A3%80%E6%B5%8B/openchash.png alt=光猫路由器></p><p>最后启动openclash，然后登录校园网账号，就可以愉快的上网了。</p><h3 id=4使用体验-1>4.使用体验</h3><p>这套方案比较稳定，但是比较吃性能，可能拖慢网速。</p><p>连接的设备数量超过4台之后，还是有概率被检测到。</p><p>如果想完全不被检测只有一种方法，就是加密数据包，全部走代理。</p></div></div></div></div><div id=页脚><div class=页脚内容><p>本设计由简.精心制作</p><a href=/>Copyright © 2016-2020 简的秘密基地. All rights reserved.</a></div></div></body></html>
